@@ -16,6 +16,6 @@ module.exports = {
     Laboratorio2,
     Laboratorio3,
     Server,
-    // Usuario,
+    Usuario,
 }
 

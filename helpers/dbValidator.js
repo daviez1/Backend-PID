@@ -24,7 +24,7 @@ const existeUsuarioxID = async ( id ) => {
 
 
 // validar colecciones permitidas
-const coleccionPermitidas = ( coleccion = '', colecciones = [] ) =>{
+const coleccionesPermitidas = ( coleccion = '', colecciones = [] ) =>{
 
   const incluida = colecciones.includes( coleccion );
   if( !incluida ){
@@ -37,5 +37,5 @@ module.exports = {
   esRolValido,
   emailExiste,
   existeUsuarioxID,
-  coleccionPermitidas
+  coleccionesPermitidas
 };

@@ -1,13 +1,15 @@
 const path = require('path');
 const fs   = require('fs');
 
+const { Usuario } = require('../models')
+
 const cloudinary = require('cloudinary').v2
 cloudinary.config( process.env.CLOUDINARY_URL );
 
 const { response } = require('express');
 const { subirArchivo } = require('../helpers/subir-archivo');
 
-const  Laboratorio  = require('../models/Laboratorios');
+const Laboratorios = require('../models/Laboratorios');
 
 
 const cargarArchivo = async(req, res = response) => {
@@ -44,11 +46,11 @@ const actualizarImagen = async(req, res = response ) => {
         
         break;
 
-        case 'productos':
-            modelo = await Producto.findById(id);
+        case 'laboratorios':
+            modelo = await Laboratorios.findById(id);
             if ( !modelo ) {
                 return res.status(400).json({
-                    msg: `No existe un producto con el id ${ id }`
+                    msg: `No existe un laboratorio con el id ${ id }`
                 });
             }
         
@@ -61,7 +63,7 @@ const actualizarImagen = async(req, res = response ) => {
 
     // Limpiar imágenes previas
     if ( modelo.img ) {
-        // Hay que borrar la imagen del servidor
+        // Hay que borrar la imagen del servidor .fs:FileSystem
         const pathImagen = path.join( __dirname, '../uploads', coleccion, modelo.img );
         if ( fs.existsSync( pathImagen ) ) {
             fs.unlinkSync( pathImagen );
@@ -149,11 +151,11 @@ const mostrarImagen = async(req, res = response ) => {
         
         break;
 
-        case 'productos':
-            modelo = await Producto.findById(id);
+        case 'laboratorios':
+            modelo = await Laboratorios.findById(id);
             if ( !modelo ) {
                 return res.status(400).json({
-                    msg: `No existe un producto con el id ${ id }`
+                    msg: `No existe un laboratorio con el id ${ id }`
                 });
             }
         
@@ -173,6 +175,8 @@ const mostrarImagen = async(req, res = response ) => {
         }
     }
 
+
+    //Para que mande el no img
     const pathImagen = path.join( __dirname, '../assets/no-image.jpg');
     res.sendFile( pathImagen );
 }

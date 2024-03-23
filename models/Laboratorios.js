@@ -9,7 +9,7 @@ const LaboratoriosSchema = Schema({
       type: Boolean,
       default: true,
     },
-    // img:
+    img: { type: String}
 });
 
 LaboratoriosSchema.methods.toJSON = function() {
