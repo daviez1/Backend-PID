@@ -10,12 +10,12 @@ class Server {
     this.app = express();
     this.port = process.env.PORT;
     this.paths = {
-      auth: '/api/auth',
-      lab1:    '/api/lab1',
-      lab2:    '/api/lab2',
-      lab3:    '/api/lab3',
-      user: '/api/user',
-      uploads: '/api/uploads',
+      auth:         '/api/auth',
+      usuarios:     '/api/usuarios',
+      lab1:         '/api/lab1',
+      lab2:         '/api/lab2',
+      lab3:         '/api/lab3',
+      uploads:      '/api/uploads',
       laboratorios: '/api/laboratorios'
     }
 
@@ -53,9 +53,9 @@ class Server {
 
   routes(){
 
-    // this.app.use( this.paths.user, require('../routes/user'));
-  //   this.app.use( this.paths.auth, require('../routes/auth'));
-  //   this.app.use( this.paths.uploads, require('../routes/uploads'));
+    this.app.use( this.paths.auth, require('../routes/auth'));
+    this.app.use(this.paths.usuarios, require('../routes/users') )
+    this.app.use( this.paths.uploads, require('../routes/uploads'));
     this.app.use( this.paths.lab3, require('../routes/lab3'));
     this.app.use( this.paths.lab2, require('../routes/lab2'));
     this.app.use( this.paths.lab1, require('../routes/lab1'));
